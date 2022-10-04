@@ -13,7 +13,6 @@ const DynamicTopTrack = dynamic(() => import('../components/TopTrack'), {
   ssr: false,
 })
 function Welcome({ artists, tracks }) {
-  const [p, setP] = useState(false)
   return (
     <main id='welcome-page' className='page-container welcome-page'>
       <h2>Top Artists</h2>
@@ -25,7 +24,7 @@ function Welcome({ artists, tracks }) {
       <h2>Top Songs</h2>
       <div className='top-artists-container'>
         {tracks.map((track) => (
-          <DynamicTopTrack key={track.id} track={track} p={p} setP={setP} />
+          <DynamicTopTrack key={track.id} track={track} />
         ))}
       </div>
     </main>

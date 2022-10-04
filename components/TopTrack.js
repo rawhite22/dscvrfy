@@ -2,7 +2,7 @@ import { useAudioContext } from '../hooks/useAudioContext'
 import Image from 'next/image'
 import useAudio from '../hooks/useAudio'
 
-function TopTrack({ track, p, setP }) {
+function TopTrack({ track }) {
   const { dispatch, isPlaying } = useAudioContext()
   const { playing, toggle } = useAudio(track.preview_url, dispatch)
   console.log(isPlaying)
@@ -15,13 +15,21 @@ function TopTrack({ track, p, setP }) {
           width={track.album.images[1].width}
         />
         <h2>{track.name}</h2>
-        <p
-          onClick={() => {
-            toggle()
-            dispatch({ type: 'SET_IS_PLAYING_TRUE' })
-          }}>
-          preview
-        </p>
+        {!playing && isPlaying ? (
+          <p>no</p>
+        ) : (
+          <p
+            onClick={() => {
+              toggle()
+              if (playing) {
+                dispatch({ type: 'SET_IS_PLAYING_FALSE' })
+              } else {
+                dispatch({ type: 'SET_IS_PLAYING_TRUE' })
+              }
+            }}>
+            preview
+          </p>
+        )}
       </div>
     </section>
   )
