@@ -11,8 +11,8 @@ export default function Home() {
         src={
           'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3269&q=80'
         }
-        height={500}
-        width={800}
+        height={800}
+        width={1200}
       />
       <small>
         Photo by{' '}
