@@ -6,7 +6,7 @@ export default async function (req, res) {
       host: 'smtp.gmail.com',
       auth: {
         user: 'robert.a.white625@gmail.com',
-        pass: 'zlkbywsclydgeqqd',
+        pass: process.env.GMAIL,
       },
       secure: true,
     })
