@@ -1,3 +1,6 @@
+@import url('./footer.min.css');
+@import url('./home.min.css');
+@import url('./header.min.css');
 @import url('./signin.min.css');
 @import url('./welcome-page.min.css');
 
@@ -21,7 +24,7 @@ a {
 
 .page-container {
   width: 75%;
-  min-height: 100vh;
+  min-height: 80vh;
   margin: 0 auto;
 }
 

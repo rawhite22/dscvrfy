@@ -10,8 +10,6 @@ function TopArtist({ artist }) {
           width={artist.images[1].width}
         />
         <h3>{artist.name}</h3>
-        <p>{artist.popularity}</p>
-        <Link href={artist.external_urls.spotify}>Open In Spotify</Link>
       </div>
     </section>
   )

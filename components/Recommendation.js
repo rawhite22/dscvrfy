@@ -1,35 +1,23 @@
-import { useAudioContext } from '../hooks/useAudioContext'
 import Image from 'next/image'
-import useAudio from '../hooks/useAudio'
-import { faPlay, faPause } from '@fortawesome/pro-solid-svg-icons'
+
+import { faUserMusic } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Link from 'next/link'
 
-function Recomendation({ track }) {
-  const { dispatch, isPlaying } = useAudioContext()
-  const { playing, toggle } = useAudio(track.preview_url, dispatch, isPlaying)
-
+function Recommendation({ track }) {
   return (
-    <section id='top_artist-artist' className='top_artist-artist'>
-      <div className='top_artist-artist-card'>
+    <section id='recommendations' className='recommendations'>
+      <div className='recommendation-card'>
         <Image
           src={track.album.images[1].url}
           height={track.album.images[1].height}
           width={track.album.images[1].width}
         />
         <h2>{track.name}</h2>
-        {!track.preview_url ? (
-          <p>preview unavailable</p>
-        ) : (
-          <p onMouseEnter={() => toggle()} onMouseLeave={() => toggle()}>
-            {playing ? (
-              <FontAwesomeIcon icon={faPause} />
-            ) : (
-              <FontAwesomeIcon icon={faPlay} />
-            )}
-          </p>
-        )}
+
+        <Link href={`${track.external_urls.spotify}`}>Open In Spotify</Link>
       </div>
     </section>
   )
 }
-export default Recomendation
+export default Recommendation

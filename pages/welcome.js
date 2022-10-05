@@ -1,20 +1,13 @@
-import dynamic from 'next/dynamic'
 import { getSession } from 'next-auth/react'
 import TopArtist from '../components/TopArtist'
+import TopTrack from '../components/TopTrack'
+import Recommendation from '../components/Recommendation'
 
 import {
   getUsersTopArtists,
   getUsersTopTracks,
   getRecomendations,
 } from '../lib/spotify'
-
-const DynamicTopTrack = dynamic(() => import('../components/TopTrack'), {
-  ssr: false,
-})
-const DynamicRecommendation = dynamic(
-  () => import('../components/Recommendation'),
-  { ssr: false }
-)
 
 function Welcome({ artists, tracks, recs }) {
   return (
@@ -28,13 +21,13 @@ function Welcome({ artists, tracks, recs }) {
       <h2>Top Songs</h2>
       <div className='top-songs-container'>
         {tracks.map((track) => (
-          <DynamicTopTrack key={track.id} track={track} />
+          <TopTrack key={track.id} track={track} />
         ))}
       </div>
       <h2>Recomendations</h2>
       <div className='recommendation-container'>
         {recs.map((track) => (
-          <DynamicRecommendation key={track.id} track={track} />
+          <Recommendation key={track.id} track={track} />
         ))}
       </div>
     </main>
