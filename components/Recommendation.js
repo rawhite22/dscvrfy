@@ -12,6 +12,7 @@ function Recommendation({ track }) {
           src={track.album.images[1].url}
           height={track.album.images[1].height}
           width={track.album.images[1].width}
+          alt='Album Artwork'
         />
         <h2>{track.name}</h2>
 

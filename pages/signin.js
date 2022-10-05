@@ -50,7 +50,7 @@ function SignIn({ providers }) {
         </div>
       )}
       <p className='sign-in-message'>
-        If you've already have access please sign in to spotify below.
+        If you already have access please sign in to spotify below.
       </p>
       {Object.values(providers).map((provider) => {
         return (
