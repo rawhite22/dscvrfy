@@ -11,11 +11,12 @@ import {
 const DynamicTopTrack = dynamic(() => import('../components/TopTrack'), {
   ssr: false,
 })
-const DynamicRecomendation = dynamic(() =>
-  import('../components/Recomendation')
+const DynamicRecomendation = dynamic(
+  () => import('../components/Recomendation'),
+  { ssr: false }
 )
 
-function Welcome({ artists, tracks }) {
+function Welcome({ artists, tracks, recs }) {
   return (
     <main id='welcome-page' className='page-container welcome-page'>
       <h2>Top Artists</h2>
@@ -28,6 +29,11 @@ function Welcome({ artists, tracks }) {
       <div className='top-artists-container'>
         {tracks.map((track) => (
           <DynamicTopTrack key={track.id} track={track} />
+        ))}
+      </div>
+      <div className=''>
+        {recs.tracks.map((track) => (
+          <DynamicRecomendation track={track} />
         ))}
       </div>
     </main>
@@ -51,14 +57,14 @@ export async function getServerSideProps(context) {
   const taData = await topArtists.json()
   const topTracks = await getUsersTopTracks(accessToken)
   const ttData = await topTracks.json()
-  // const recomendations = await getRecomendations(
-  //   taData.items,
-  //   ttData.items,
-  //   accessToken
-  // )
-  // const recs = await recomendations.json()
+  const recomendations = await getRecomendations(
+    taData.items,
+    ttData.items,
+    accessToken
+  )
+  const recs = await recomendations.json()
 
   return {
-    props: { artists: taData.items, tracks: ttData.items },
+    props: { artists: taData.items, tracks: ttData.items, recs },
   }
 }

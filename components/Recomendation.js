@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 function Recomendation({ track }) {
   const { dispatch, isPlaying } = useAudioContext()
   const { playing, toggle } = useAudio(track.preview_url, dispatch, isPlaying)
-  console.log(track)
+
   return (
     <section id='top_artist-artist' className='top_artist-artist'>
       <div className='top_artist-artist-card'>
@@ -17,13 +17,17 @@ function Recomendation({ track }) {
           width={track.album.images[1].width}
         />
         <h2>{track.name}</h2>
-        <p onMouseEnter={() => toggle()} onMouseLeave={() => toggle()}>
-          {playing ? (
-            <FontAwesomeIcon icon={faPause} />
-          ) : (
-            <FontAwesomeIcon icon={faPlay} />
-          )}
-        </p>
+        {!track.preview_url ? (
+          <p>preview unavailable</p>
+        ) : (
+          <p onMouseEnter={() => toggle()} onMouseLeave={() => toggle()}>
+            {playing ? (
+              <FontAwesomeIcon icon={faPause} />
+            ) : (
+              <FontAwesomeIcon icon={faPlay} />
+            )}
+          </p>
+        )}
       </div>
     </section>
   )
