@@ -1,7 +1,4 @@
 import Image from 'next/image'
-
-import { faUserMusic } from '@fortawesome/pro-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 
 function Recommendation({ track }) {

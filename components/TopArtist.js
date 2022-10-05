@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import Link from 'next/link'
+
 function TopArtist({ artist }) {
   return (
     <section id='top_artist-artist' className='top_artist-artist'>
