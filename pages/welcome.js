@@ -11,8 +11,8 @@ import {
 const DynamicTopTrack = dynamic(() => import('../components/TopTrack'), {
   ssr: false,
 })
-const DynamicRecomendation = dynamic(
-  () => import('../components/Recomendation'),
+const DynamicRecommendation = dynamic(
+  () => import('../components/Recommendation'),
   { ssr: false }
 )
 
@@ -26,14 +26,15 @@ function Welcome({ artists, tracks, recs }) {
         ))}
       </div>
       <h2>Top Songs</h2>
-      <div className='top-artists-container'>
+      <div className='top-songs-container'>
         {tracks.map((track) => (
           <DynamicTopTrack key={track.id} track={track} />
         ))}
       </div>
-      <div className=''>
-        {recs.tracks.map((track) => (
-          <DynamicRecomendation track={track} />
+      <h2>Recomendations</h2>
+      <div className='recommendation-container'>
+        {recs.map((track) => (
+          <DynamicRecommendation key={track.id} track={track} />
         ))}
       </div>
     </main>
@@ -63,8 +64,14 @@ export async function getServerSideProps(context) {
     accessToken
   )
   const recs = await recomendations.json()
-
+  const availablePreviews = recs.tracks.filter(
+    (track) => track.preview_url !== null
+  )
   return {
-    props: { artists: taData.items, tracks: ttData.items, recs },
+    props: {
+      artists: taData.items,
+      tracks: ttData.items,
+      recs: availablePreviews,
+    },
   }
 }
