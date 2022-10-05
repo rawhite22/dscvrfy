@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const useAudio = (url, dispatch) => {
+const useAudio = (url, dispatch, isPlaying) => {
   const [audio] = useState(new Audio(url))
   const [playing, setPlaying] = useState(false)
   const toggle = () => setPlaying(!playing)

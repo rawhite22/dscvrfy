@@ -7,11 +7,14 @@ import {
   getUsersTopTracks,
   getRecomendations,
 } from '../lib/spotify'
-import { useState } from 'react'
 
 const DynamicTopTrack = dynamic(() => import('../components/TopTrack'), {
   ssr: false,
 })
+const DynamicRecomendation = dynamic(() =>
+  import('../components/Recomendation')
+)
+
 function Welcome({ artists, tracks }) {
   return (
     <main id='welcome-page' className='page-container welcome-page'>
@@ -48,7 +51,13 @@ export async function getServerSideProps(context) {
   const taData = await topArtists.json()
   const topTracks = await getUsersTopTracks(accessToken)
   const ttData = await topTracks.json()
-  const recomendations = await getRecomendations(taData.items, ttData.items)
+  // const recomendations = await getRecomendations(
+  //   taData.items,
+  //   ttData.items,
+  //   accessToken
+  // )
+  // const recs = await recomendations.json()
+
   return {
     props: { artists: taData.items, tracks: ttData.items },
   }

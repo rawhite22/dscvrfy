@@ -4,10 +4,10 @@ import useAudio from '../hooks/useAudio'
 import { faPlay, faPause } from '@fortawesome/pro-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-function TopTrack({ track }) {
+function Recomendation({ track }) {
   const { dispatch, isPlaying } = useAudioContext()
   const { playing, toggle } = useAudio(track.preview_url, dispatch, isPlaying)
-
+  console.log(track)
   return (
     <section id='top_artist-artist' className='top_artist-artist'>
       <div className='top_artist-artist-card'>
@@ -28,4 +28,4 @@ function TopTrack({ track }) {
     </section>
   )
 }
-export default TopTrack
+export default Recomendation
